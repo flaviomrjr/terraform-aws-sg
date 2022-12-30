@@ -1,0 +1,24 @@
+name: SG-eks-1
+description: SG EKS
+vpc_id: vpc-000000
+spec:
+  security_group_ingress:
+  - protocol: tcp
+    from_port: 22
+    to_port: 22
+    cidr_blocks: [10.10.0.0/24]
+    description: From CIDR EKS
+  - protocol: tcp
+    from_port: 22
+    to_port: 22
+    security_groups: ["sg-000000000"]
+    description: From SG EKS
+  security_group_egress: 
+  - protocol: tcp
+    from_port: 0
+    to_port: 0
+    cidr_blocks: [0.0.0.0/0]
+    description: Default Outbound EKS
+  tags:
+    env: dev
+    resource: eks
